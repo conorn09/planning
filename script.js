@@ -28,11 +28,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Interactive shapes
     initInteractiveShapes();
     
-    // Interactive portfolio chart
+    // Professional Stock Chart
     initPortfolioChart();
     
-    // Physics circles
-    initPhysicsCircles();
+    // Physics circles removed
 
     // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('.nav-link');
@@ -119,17 +118,31 @@ document.addEventListener('DOMContentLoaded', function() {
             '#fb5607, #ffbe0b, #8338ec'           // Orange to Yellow to Purple
         ];
         
-        const gradientIndex = Math.floor(scrollPercent * (gradients.length - 1));
-        const nextGradientIndex = Math.min(gradientIndex + 1, gradients.length - 1);
-        const localPercent = (scrollPercent * (gradients.length - 1)) - gradientIndex;
+        // Smooth gradient interpolation
+        const totalGradients = gradients.length - 1;
+        const exactPosition = scrollPercent * totalGradients;
+        const gradientIndex = Math.floor(exactPosition);
+        const nextGradientIndex = Math.min(gradientIndex + 1, totalGradients);
+        const localPercent = exactPosition - gradientIndex;
         
-        // Create dramatic gradient with multiple colors - syrup-like slow transitions
-        const currentGradient = gradients[gradientIndex];
-        const angle = 135 + (scrollPercent * 90); // Slower rotating gradient angle
+        // Interpolate between current and next gradient
+        const currentColors = gradients[gradientIndex].split(', ');
+        const nextColors = gradients[nextGradientIndex].split(', ');
         
-        // Apply transition with syrup-like timing
-        body.style.transition = 'background 2.5s cubic-bezier(0.25, 0.1, 0.25, 1), filter 2s ease-out';
-        body.style.background = `linear-gradient(${angle}deg, ${currentGradient})`;
+        // Create smooth color interpolation
+        const interpolatedColors = currentColors.map((color, index) => {
+            if (nextColors[index]) {
+                return interpolateColor(color, nextColors[index], localPercent);
+            }
+            return color;
+        });
+        
+        const smoothGradient = interpolatedColors.join(', ');
+        const angle = 135 + (scrollPercent * 45); // Gentler angle rotation
+        
+        // Apply smooth transition
+        body.style.transition = 'background 1.5s cubic-bezier(0.25, 0.1, 0.25, 1), filter 1s ease-out';
+        body.style.background = `linear-gradient(${angle}deg, ${smoothGradient})`;
         body.style.backgroundSize = '400% 400%';
         body.style.backgroundAttachment = 'fixed';
         
@@ -201,55 +214,264 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Add CSS for active nav items and mobile menu
-const additionalCSS = `
-.nav-link.active {
-    color: #2563eb;
+// Color interpolation helper function
+function interpolateColor(color1, color2, factor) {
+    // Remove # if present and convert to RGB
+    const hex1 = color1.replace('#', '');
+    const hex2 = color2.replace('#', '');
+    
+    const r1 = parseInt(hex1.substr(0, 2), 16);
+    const g1 = parseInt(hex1.substr(2, 2), 16);
+    const b1 = parseInt(hex1.substr(4, 2), 16);
+    
+    const r2 = parseInt(hex2.substr(0, 2), 16);
+    const g2 = parseInt(hex2.substr(2, 2), 16);
+    const b2 = parseInt(hex2.substr(4, 2), 16);
+    
+    const r = Math.round(r1 + (r2 - r1) * factor);
+    const g = Math.round(g1 + (g2 - g1) * factor);
+    const b = Math.round(b1 + (b2 - b1) * factor);
+    
+    return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
 }
 
-@media (max-width: 768px) {
-    .nav-menu {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(10px);
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        padding-top: 2rem;
-        transition: left 0.3s ease;
-        z-index: 999;
+// Simplified Investment Growth Chart
+function initPortfolioChart() {
+    const stockChart = document.getElementById('stockChart');
+    const tooltip = document.getElementById('chartTooltip');
+    const periods = document.querySelectorAll('.period');
+    const currentPrice = document.querySelector('.current-price');
+    const priceChange = document.querySelector('.price-change');
+    
+    if (!stockChart) {
+        console.error('Chart canvas not found!');
+        return;
     }
     
-    .nav-menu.active {
-        left: 0;
+    const stockCtx = stockChart.getContext('2d');
+    let currentPeriod = '3Y';
+    
+    // Investment growth data showing portfolio value over time
+    const portfolioData = {
+        '1Y': {
+            data: [10000, 10400, 9600, 11000, 11600, 12400, 11800, 13000, 13600, 14400, 15000, 15600],
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        },
+        '3Y': {
+            data: [10000, 11600, 13000, 14400, 15600, 17000, 18400, 19600, 21000, 22400, 23600, 25000],
+            labels: ['2022 Q1', '2022 Q2', '2022 Q3', '2022 Q4', '2023 Q1', '2023 Q2', '2023 Q3', '2023 Q4', '2024 Q1', '2024 Q2', '2024 Q3', '2024 Q4']
+        },
+        '5Y': {
+            data: [10000, 12400, 15000, 17600, 20400, 23600, 27000, 30400, 34000, 37600],
+            labels: ['2020', '2020.5', '2021', '2021.5', '2022', '2022.5', '2023', '2023.5', '2024', '2024.5']
+        },
+        '10Y': {
+            data: [10000, 13600, 18400, 25000, 33600, 45000, 59600, 77000, 97000, 119000, 143000],
+            labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+        }
+    };
+    
+    // Draw investment growth chart with axes and dots
+    function drawInvestmentChart(data, labels, canvas, ctx) {
+        const width = canvas.width;
+        const height = canvas.height;
+        const padding = 60;
+        const chartWidth = width - 2 * padding;
+        const chartHeight = height - 2 * padding;
+        
+        ctx.clearRect(0, 0, width, height);
+        
+        // Get value range
+        const minValue = Math.min(...data);
+        const maxValue = Math.max(...data);
+        const valueRange = maxValue - minValue;
+        
+        // Draw background
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+        ctx.fillRect(padding, padding, chartWidth, chartHeight);
+        
+        // Draw grid lines
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+        ctx.lineWidth = 1;
+        
+        // Horizontal grid lines (5 lines)
+        for (let i = 0; i <= 5; i++) {
+            const y = padding + (chartHeight * i / 5);
+            ctx.beginPath();
+            ctx.moveTo(padding, y);
+            ctx.lineTo(width - padding, y);
+            ctx.stroke();
+            
+            // Y-axis labels (Performance)
+            const value = maxValue - (valueRange * i / 5);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.font = 'bold 13px Inter';
+            ctx.textAlign = 'right';
+            
+            // Format values nicely
+            let formattedValue;
+            if (value >= 1000) {
+                formattedValue = `$${(value / 1000).toFixed(0)}K`;
+            } else {
+                formattedValue = `$${value.toFixed(0)}`;
+            }
+            
+            ctx.fillText(formattedValue, padding - 15, y + 5);
+        }
+        
+        // Vertical grid lines
+        const stepX = chartWidth / (data.length - 1);
+        for (let i = 0; i < data.length; i++) {
+            const x = padding + (i * stepX);
+            ctx.beginPath();
+            ctx.moveTo(x, padding);
+            ctx.lineTo(x, height - padding);
+            ctx.stroke();
+        }
+        
+        // Draw axes
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+        ctx.lineWidth = 2;
+        
+        // Y-axis
+        ctx.beginPath();
+        ctx.moveTo(padding, padding);
+        ctx.lineTo(padding, height - padding);
+        ctx.stroke();
+        
+        // X-axis
+        ctx.beginPath();
+        ctx.moveTo(padding, height - padding);
+        ctx.lineTo(width - padding, height - padding);
+        ctx.stroke();
+        
+        // Axis labels
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 14px Inter';
+        ctx.textAlign = 'center';
+        
+        // Y-axis label
+        ctx.save();
+        ctx.translate(20, height / 2);
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillText('Portfolio Value', 0, 0);
+        ctx.restore();
+        
+        // X-axis label
+        ctx.fillText('Time Period', width / 2, height - 10);
+        
+        // Draw line chart with area fill
+        ctx.beginPath();
+        data.forEach((value, index) => {
+            const x = padding + (index * stepX);
+            const y = height - padding - ((value - minValue) / valueRange) * chartHeight;
+            
+            if (index === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+        });
+        
+        // Create gradient for area fill
+        const gradient = ctx.createLinearGradient(0, padding, 0, height - padding);
+        gradient.addColorStop(0, 'rgba(16, 185, 129, 0.3)');
+        gradient.addColorStop(1, 'rgba(16, 185, 129, 0.05)');
+        
+        // Fill area under curve
+        ctx.lineTo(width - padding, height - padding);
+        ctx.lineTo(padding, height - padding);
+        ctx.closePath();
+        ctx.fillStyle = gradient;
+        ctx.fill();
+        
+        // Draw line
+        ctx.beginPath();
+        data.forEach((value, index) => {
+            const x = padding + (index * stepX);
+            const y = height - padding - ((value - minValue) / valueRange) * chartHeight;
+            
+            if (index === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+        });
+        
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+        
+        // Draw dots at each data point
+        data.forEach((value, index) => {
+            const x = padding + (index * stepX);
+            const y = height - padding - ((value - minValue) / valueRange) * chartHeight;
+            
+            // Outer circle (glow)
+            ctx.beginPath();
+            ctx.arc(x, y, 8, 0, 2 * Math.PI);
+            ctx.fillStyle = 'rgba(16, 185, 129, 0.3)';
+            ctx.fill();
+            
+            // Inner circle (dot)
+            ctx.beginPath();
+            ctx.arc(x, y, 5, 0, 2 * Math.PI);
+            ctx.fillStyle = '#10b981';
+            ctx.fill();
+            
+            // White center
+            ctx.beginPath();
+            ctx.arc(x, y, 2, 0, 2 * Math.PI);
+            ctx.fillStyle = 'white';
+            ctx.fill();
+        });
+        
+        // Draw X-axis labels
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.font = '11px Inter';
+        ctx.textAlign = 'center';
+        
+        labels.forEach((label, index) => {
+            if (index % Math.ceil(labels.length / 6) === 0 || index === labels.length - 1) {
+                const x = padding + (index * stepX);
+                ctx.fillText(label, x, height - padding + 20);
+            }
+        });
     }
     
-    .nav-menu li {
-        margin: 1rem 0;
-    }
-    
-    .nav-toggle.active span:nth-child(1) {
-        transform: rotate(-45deg) translate(-5px, 6px);
-    }
-    
-    .nav-toggle.active span:nth-child(2) {
-        opacity: 0;
-    }
-    
-    .nav-toggle.active span:nth-child(3) {
-        transform: rotate(45deg) translate(-5px, -6px);
-    }
-}
-`;
 
-// Inject additional CSS
-const style = document.createElement('style');
-style.textContent = additionalCSS;
-document.head.appendChild(style);
+    
+    // Update chart display
+    function updateChart() {
+        const periodData = portfolioData[currentPeriod];
+        
+        drawInvestmentChart(periodData.data, periodData.labels, stockChart, stockCtx);
+        
+        // Update price display
+        const latestValue = periodData.data[periodData.data.length - 1];
+        const firstValue = periodData.data[0];
+        const change = latestValue - firstValue;
+        const changePercent = (change / firstValue) * 100;
+        
+        currentPrice.textContent = `$${latestValue.toLocaleString()}`;
+        priceChange.textContent = `${change >= 0 ? '+' : ''}$${Math.abs(change).toLocaleString()} (${changePercent.toFixed(1)}%)`;
+        priceChange.className = `price-change ${change >= 0 ? 'positive' : 'negative'}`;
+    }
+    
+    // Event listeners
+    periods.forEach(period => {
+        period.addEventListener('click', () => {
+            periods.forEach(p => p.classList.remove('active'));
+            period.classList.add('active');
+            currentPeriod = period.dataset.period;
+            updateChart();
+        });
+    });
+    
+    // Initialize chart
+    updateChart();
+}
+
 // Create floating particles
 function createParticles() {
     const particlesContainer = document.getElementById('particles');
@@ -348,171 +570,6 @@ function initParallaxScrolling() {
     });
 }
 
-// Smooth reveal animations on scroll
-const revealElements = () => {
-    const reveals = document.querySelectorAll('.service-card, .about-text, .contact-form');
-    
-    reveals.forEach(element => {
-        const windowHeight = window.innerHeight;
-        const elementTop = element.getBoundingClientRect().top;
-        const elementVisible = 150;
-        
-        if (elementTop < windowHeight - elementVisible) {
-            element.classList.add('reveal');
-        }
-    });
-};
-
-window.addEventListener('scroll', revealElements);
-
-// Add reveal animation styles
-const revealCSS = `
-.service-card,
-.about-text,
-.contact-form {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.service-card.reveal,
-.about-text.reveal,
-.contact-form.reveal {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.service-card:nth-child(1) { transition-delay: 0.1s; }
-.service-card:nth-child(2) { transition-delay: 0.2s; }
-.service-card:nth-child(3) { transition-delay: 0.3s; }
-.service-card:nth-child(4) { transition-delay: 0.4s; }
-.service-card:nth-child(5) { transition-delay: 0.5s; }
-.service-card:nth-child(6) { transition-delay: 0.6s; }
-
-/* Magnetic button effect */
-.btn {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.btn:hover {
-    animation: magneticPulse 0.6s ease-in-out;
-}
-
-@keyframes magneticPulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1.02); }
-}
-
-/* Glowing text effect */
-.gradient-text {
-    position: relative;
-}
-
-.gradient-text::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: blur(2px);
-    opacity: 0.7;
-    z-index: -1;
-    animation: gradient-shift 3s ease infinite;
-}
-
-/* Scroll progress indicator */
-.scroll-progress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 3px;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-    z-index: 9999;
-    transition: width 0.1s ease;
-}
-
-/* Cursor trail effect */
-.cursor-trail {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.3), transparent);
-    pointer-events: none;
-    z-index: 9999;
-    transition: all 0.1s ease;
-}
-`;
-
-// Add enhanced styles
-const enhancedStyle = document.createElement('style');
-enhancedStyle.textContent = revealCSS;
-document.head.appendChild(enhancedStyle);
-
-// Scroll progress indicator
-const createScrollProgress = () => {
-    const progressBar = document.createElement('div');
-    progressBar.className = 'scroll-progress';
-    document.body.appendChild(progressBar);
-    
-    window.addEventListener('scroll', () => {
-        const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-        progressBar.style.width = scrolled + '%';
-    });
-};
-
-createScrollProgress();
-
-// Cursor trail effect
-const createCursorTrail = () => {
-    const trails = [];
-    const trailLength = 10;
-    
-    for (let i = 0; i < trailLength; i++) {
-        const trail = document.createElement('div');
-        trail.className = 'cursor-trail';
-        trail.style.opacity = (trailLength - i) / trailLength;
-        trail.style.transform = `scale(${(trailLength - i) / trailLength})`;
-        document.body.appendChild(trail);
-        trails.push(trail);
-    }
-    
-    let mouseX = 0, mouseY = 0;
-    
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-    
-    const animateTrails = () => {
-        let x = mouseX, y = mouseY;
-        
-        trails.forEach((trail, index) => {
-            trail.style.left = x - 10 + 'px';
-            trail.style.top = y - 10 + 'px';
-            
-            const nextTrail = trails[index + 1] || trails[0];
-            x += (parseFloat(nextTrail.style.left) || x - x) * 0.3;
-            y += (parseFloat(nextTrail.style.top) || y - y) * 0.3;
-        });
-        
-        requestAnimationFrame(animateTrails);
-    };
-    
-    animateTrails();
-};
-
-// Only add cursor trail on desktop
-if (window.innerWidth > 768) {
-    createCursorTrail();
-}
-
 // Interactive shapes function
 function initInteractiveShapes() {
     const shapes = document.querySelectorAll('.shape');
@@ -575,125 +632,6 @@ function initInteractiveShapes() {
     });
 }
 
-// Interactive portfolio chart function with 1Y, 5Y, and 10Y views
-function initPortfolioChart() {
-    const periods = document.querySelectorAll('.period');
-    const chartViews = document.querySelectorAll('.chart-view');
-    const periodLabels = document.querySelectorAll('.period-labels');
-    
-    if (!periods.length || !chartViews.length || !periodLabels.length) {
-        console.error('Chart elements not found!');
-        return;
-    }
-    
-    periods.forEach((period) => {
-        period.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            // Remove active class from all periods
-            periods.forEach(p => p.classList.remove('active'));
-            // Add active class to clicked period
-            period.classList.add('active');
-            
-            const selectedPeriod = period.getAttribute('data-period');
-            
-            // Hide all chart views and labels with fade effect
-            chartViews.forEach(view => {
-                view.style.opacity = '0';
-                view.style.transition = 'opacity 0.3s ease';
-                setTimeout(() => {
-                    view.style.display = 'none';
-                }, 300);
-            });
-            
-            periodLabels.forEach(label => {
-                label.style.opacity = '0';
-                label.style.transition = 'opacity 0.3s ease';
-                setTimeout(() => {
-                    label.style.display = 'none';
-                }, 300);
-            });
-            
-            // Show selected chart view and labels after fade out
-            setTimeout(() => {
-                const selectedView = document.querySelector(`.chart-view[data-period="${selectedPeriod}"]`);
-                const selectedLabels = document.querySelector(`.period-labels[data-period="${selectedPeriod}"]`);
-                
-                if (selectedView) {
-                    selectedView.style.display = 'block';
-                    selectedView.style.opacity = '0';
-                    setTimeout(() => {
-                        selectedView.style.opacity = '1';
-                    }, 50);
-                    
-                    // Animate the chart line drawing
-                    const chartLine = selectedView.querySelector('.chart-line');
-                    if (chartLine) {
-                        const pathLength = chartLine.getTotalLength();
-                        chartLine.style.strokeDasharray = pathLength;
-                        chartLine.style.strokeDashoffset = pathLength;
-                        chartLine.style.transition = 'stroke-dashoffset 1.5s ease-in-out';
-                        
-                        setTimeout(() => {
-                            chartLine.style.strokeDashoffset = '0';
-                        }, 200);
-                    }
-                    
-                    // Animate chart dots
-                    const chartDots = selectedView.querySelectorAll('.chart-dot');
-                    chartDots.forEach((dot, index) => {
-                        dot.style.opacity = '0';
-                        dot.style.transform = 'scale(0)';
-                        dot.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                        
-                        setTimeout(() => {
-                            dot.style.opacity = '1';
-                            dot.style.transform = 'scale(1)';
-                        }, 400 + index * 100);
-                    });
-                }
-                
-                if (selectedLabels) {
-                    selectedLabels.style.display = 'flex';
-                    selectedLabels.style.opacity = '0';
-                    setTimeout(() => {
-                        selectedLabels.style.opacity = '1';
-                    }, 50);
-                }
-            }, 350);
-        });
-    });
-    
-    // Initialize with smooth animations on page load
-    const initialView = document.querySelector('.chart-view[data-period="1Y"]');
-    if (initialView) {
-        const chartLine = initialView.querySelector('.chart-line');
-        if (chartLine) {
-            const pathLength = chartLine.getTotalLength();
-            chartLine.style.strokeDasharray = pathLength;
-            chartLine.style.strokeDashoffset = pathLength;
-            chartLine.style.transition = 'stroke-dashoffset 2s ease-in-out';
-            
-            // Start animation after page load
-            setTimeout(() => {
-                chartLine.style.strokeDashoffset = '0';
-            }, 1000);
-        }
-        
-        // Animate initial dots
-        const chartDots = initialView.querySelectorAll('.chart-dot');
-        chartDots.forEach((dot, index) => {
-            dot.style.opacity = '0';
-            dot.style.transform = 'scale(0)';
-            dot.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-            
-            setTimeout(() => {
-                dot.style.opacity = '1';
-                dot.style.transform = 'scale(1)';
-            }, 1200 + index * 150);
-        });
-    }
-}
 // Physics-based floating circles
 function initPhysicsCircles() {
     const circles = document.querySelectorAll('.physics-circle');

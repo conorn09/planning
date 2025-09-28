@@ -127,7 +127,7 @@
                 <h1 class="hero-title">
                     <span class="title-line">Build Wealth <span class="ampersand">&</span></span>
                     <span class="title-line gradient-text">Secure Your Future</span>
-                    <span class="title-line">as a Young Professional</span>
+                    <span class="title-line subtitle-line">as a Young Professional</span>
                 </h1>
                 <p class="hero-subtitle">Hi, I'm Conor Nolan, a fee-only financial advisor who specializes in helping
                     young professionals navigate their financial journey. Let's build lasting relationships and prepare
@@ -162,116 +162,31 @@
             <div class="hero-visual">
                 <div class="financial-dashboard">
                     <!-- Main Chart Container -->
-                    <div class="chart-container">
+                    <div class="stock-chart-container">
                         <div class="chart-header">
-                            <h4>Portfolio Performance</h4>
-                            <div class="chart-period">
-                                <span class="period active" data-period="1Y">1Y</span>
-                                <span class="period" data-period="5Y">5Y</span>
-                                <span class="period" data-period="10Y">10Y</span>
+                            <div class="chart-title">
+                                <h4>Portfolio Performance</h4>
+                                <div class="chart-price">
+                                    <span class="current-price">$127,450</span>
+                                    <span class="price-change positive">+$2,340 (+1.87%)</span>
+                                </div>
+                            </div>
+                            <div class="chart-controls">
+                                <div class="chart-period">
+                                    <span class="period" data-period="1Y">1Y</span>
+                                    <span class="period active" data-period="3Y">3Y</span>
+                                    <span class="period" data-period="5Y">5Y</span>
+                                    <span class="period" data-period="10Y">10Y</span>
+                                </div>
                             </div>
                         </div>
-                        <svg class="growth-chart" viewBox="0 0 400 200">
-                            <defs>
-                                <lineargradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#2563eb;stop-opacity:0.4" />
-                                    <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:0.2" />
-                                    <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0" />
-                                </lineargradient>
-                                <lineargradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:#2563eb" />
-                                    <stop offset="50%" style="stop-color:#8b5cf6" />
-                                    <stop offset="100%" style="stop-color:#06b6d4" />
-                                </lineargradient>
-                            </defs>
-                            <!-- Grid lines -->
-                            <g class="grid-lines" opacity="0.1">
-                                <line x1="20" y1="40" x2="380" y2="40" stroke="#64748b" />
-                                <line x1="20" y1="80" x2="380" y2="80" stroke="#64748b" />
-                                <line x1="20" y1="120" x2="380" y2="120" stroke="#64748b" />
-                                <line x1="20" y1="160" x2="380" y2="160" stroke="#64748b" />
-                            </g>
-                            
-                            <!-- 1Y View (Default) -->
-                            <g class="chart-view" data-period="1Y">
-                                <!-- Chart area -->
-                                <path class="chart-area" d="M20,180 Q100,160 150,120 T300,60 T380,40 L380,180 Z"
-                                    fill="url(#chartGradient)" />
-                                <!-- Chart line -->
-                                <path class="chart-line" d="M20,180 Q100,160 150,120 T300,60 T380,40"
-                                    stroke="url(#lineGradient)" stroke-width="4" fill="none" />
-                                <!-- Data points -->
-                                <circle class="chart-dot" cx="100" cy="160" r="4" fill="#2563eb" />
-                                <circle class="chart-dot" cx="200" cy="100" r="4" fill="#8b5cf6" />
-                                <circle class="chart-dot" cx="300" cy="60" r="4" fill="#06b6d4" />
-                                <circle class="chart-dot main-dot" cx="380" cy="40" r="8" fill="#06b6d4" />
-                            </g>
-                            
-                            <!-- 5Y View -->
-                            <g class="chart-view" data-period="5Y" style="display: none;">
-                                <!-- Chart area -->
-                                <path class="chart-area" d="M20,140 Q60,160 100,150 T180,100 T260,80 T340,40 T380,30 L380,180 Z"
-                                    fill="url(#chartGradient)" />
-                                <!-- Chart line -->
-                                <path class="chart-line" d="M20,140 Q60,160 100,150 T180,100 T260,80 T340,40 T380,30"
-                                    stroke="url(#lineGradient)" stroke-width="4" fill="none" />
-                                <!-- Data points -->
-                                <circle class="chart-dot" cx="20" cy="140" r="4" fill="#2563eb" />
-                                <circle class="chart-dot" cx="90" cy="150" r="4" fill="#2563eb" />
-                                <circle class="chart-dot" cx="160" cy="110" r="4" fill="#8b5cf6" />
-                                <circle class="chart-dot" cx="230" cy="90" r="4" fill="#8b5cf6" />
-                                <circle class="chart-dot" cx="300" cy="55" r="4" fill="#06b6d4" />
-                                <circle class="chart-dot main-dot" cx="380" cy="30" r="8" fill="#06b6d4" />
-                            </g>
-                            
-                            <!-- 10Y View -->
-                            <g class="chart-view" data-period="10Y" style="display: none;">
-                                <!-- Chart area -->
-                                <path class="chart-area" d="M20,160 Q50,170 80,150 T140,170 T200,120 T260,140 T320,60 T380,20 L380,180 Z"
-                                    fill="url(#chartGradient)" />
-                                <!-- Chart line -->
-                                <path class="chart-line" d="M20,160 Q50,170 80,150 T140,170 T200,120 T260,140 T320,60 T380,20"
-                                    stroke="url(#lineGradient)" stroke-width="4" fill="none" />
-                                <!-- Data points -->
-                                <circle class="chart-dot" cx="20" cy="160" r="4" fill="#2563eb" />
-                                <circle class="chart-dot" cx="80" cy="150" r="4" fill="#2563eb" />
-                                <circle class="chart-dot" cx="140" cy="170" r="4" fill="#2563eb" />
-                                <circle class="chart-dot" cx="200" cy="120" r="4" fill="#8b5cf6" />
-                                <circle class="chart-dot" cx="260" cy="140" r="4" fill="#8b5cf6" />
-                                <circle class="chart-dot" cx="320" cy="60" r="4" fill="#06b6d4" />
-                                <circle class="chart-dot main-dot" cx="380" cy="20" r="8" fill="#06b6d4" />
-                            </g>
-                        </svg>
                         
-                        <!-- Chart Labels Container - Will be dynamically updated -->
-                        <div class="chart-labels" id="chart-labels-container">
-                            <!-- Default 1Y labels -->
-                            <div class="period-labels" data-period="1Y">
-                                <span>Jan</span>
-                                <span>Apr</span>
-                                <span>Jul</span>
-                                <span>Oct</span>
-                                <span>Jan</span>
-                            </div>
-                            <!-- 5Y labels - Hidden by default -->
-                            <div class="period-labels" data-period="5Y" style="display: none;">
-                                <span>2019</span>
-                                <span>2020</span>
-                                <span>2021</span>
-                                <span>2022</span>
-                                <span>2023</span>
-                                <span>2024</span>
-                            </div>
-                            <!-- 10Y labels - Hidden by default -->
-                            <div class="period-labels" data-period="10Y" style="display: none;">
-                                <span>2014</span>
-                                <span>2016</span>
-                                <span>2018</span>
-                                <span>2020</span>
-                                <span>2022</span>
-                                <span>2024</span>
-                            </div>
+                        <div class="professional-chart">
+                            <canvas id="stockChart" width="500" height="300"></canvas>
+                            <div class="chart-tooltip" id="chartTooltip"></div>
                         </div>
+                        
+
                     </div>
 
                     <!-- Financial Metrics Cards -->
@@ -338,11 +253,6 @@
 
                 <!-- Decorative Elements -->
                 <div class="hero-decorations">
-                    <div class="decoration-circle physics-circle circle-1"></div>
-                    <div class="decoration-circle physics-circle circle-2"></div>
-                    <div class="decoration-circle physics-circle circle-3"></div>
-                    <div class="decoration-circle physics-circle circle-4"></div>
-                    <div class="decoration-circle physics-circle circle-5"></div>
                     <div class="decoration-line line-1"></div>
                     <div class="decoration-line line-2"></div>
                 </div>

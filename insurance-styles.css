@@ -806,8 +806,9 @@
     .coverage-visual {
         padding: 1rem;
     }
-}/
-* Real-time calculator enhancements */
+}
+
+/* Real-time calculator enhancements */
 .section-total {
     transition: all 0.3s ease;
 }
