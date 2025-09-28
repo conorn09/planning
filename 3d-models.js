@@ -192,8 +192,8 @@ function createFloatingShape(container, index) {
     }
     
     animate();
-}// Enh
-anced 3D Service Cards
+} 
+/* Enhanced 3D Service Cards */
 function enhance3DServiceCards() {
     const serviceCards = document.querySelectorAll('.service-card');
     
