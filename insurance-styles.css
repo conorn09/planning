@@ -1,0 +1,887 @@
+/* Insurance Planning Page Styles */
+
+/* Hero Section */
+.insurance-hero {
+    position: relative;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    padding: 120px 0 80px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.breadcrumb {
+    color: #94a3b8;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
+.breadcrumb a {
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* Protection Shield Animation */
+.protection-shield {
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 360px;
+}
+
+.shield-svg {
+    width: 100%;
+    height: 100%;
+    animation: shieldPulse 4s ease-in-out infinite;
+}
+
+@keyframes shieldPulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.3)); }
+    50% { transform: scale(1.05); filter: drop-shadow(0 0 40px rgba(59, 130, 246, 0.6)); }
+}
+
+.shield-path {
+    stroke-dasharray: 800;
+    stroke-dashoffset: 800;
+    animation: drawShield 3s ease-out forwards;
+}
+
+.shield-inner {
+    opacity: 0;
+    animation: fadeInShield 1s ease-out 2s forwards;
+}
+
+.shield-center {
+    opacity: 0;
+    animation: fadeInShield 1s ease-out 2.5s forwards;
+}
+
+.checkmark {
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+    animation: drawCheck 1s ease-out 3s forwards;
+}
+
+@keyframes drawShield {
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes fadeInShield {
+    to { opacity: 1; }
+}
+
+@keyframes drawCheck {
+    to { stroke-dashoffset: 0; }
+}
+
+/* Protection Icons */
+.protection-icons {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.protection-icon {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: iconFloat 6s ease-in-out infinite;
+}
+
+.icon-circle {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
+}
+
+.icon-label {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.protection-icon:hover .icon-circle {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.6);
+    transform: scale(1.1);
+}
+
+.protection-icon:hover .icon-label {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.icon-1 {
+    top: 20%;
+    left: -20%;
+    animation-delay: 0s;
+}
+
+.icon-2 {
+    top: 10%;
+    right: -30%;
+    animation-delay: 1s;
+}
+
+.icon-3 {
+    bottom: 30%;
+    left: -25%;
+    animation-delay: 2s;
+}
+
+.icon-4 {
+    bottom: 20%;
+    right: -35%;
+    animation-delay: 3s;
+}
+
+.icon-5 {
+    top: 60%;
+    right: -40%;
+    animation-delay: 4s;
+}
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Protection Waves */
+.protection-waves {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+}
+
+.wave {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid rgba(59, 130, 246, 0.2);
+    border-radius: 50%;
+    animation: waveExpand 4s ease-out infinite;
+}
+
+.wave-1 {
+    width: 200px;
+    height: 200px;
+    animation-delay: 0s;
+}
+
+.wave-2 {
+    width: 300px;
+    height: 300px;
+    animation-delay: 1s;
+}
+
+.wave-3 {
+    width: 400px;
+    height: 400px;
+    animation-delay: 2s;
+}
+
+@keyframes waveExpand {
+    0% {
+        width: 100px;
+        height: 100px;
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Protection Stats */
+.protection-stats {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0;
+    animation: slideInUp 1s ease-out 1s forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.stat-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #3b82f6;
+    display: block;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: #94a3b8;
+    margin-top: 0.25rem;
+}
+
+/* Life Insurance Calculator */
+.coverage-types {
+    padding: 80px 0;
+    background: #fef7ed;
+}
+
+.calculator-interactive {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.calculator-form {
+    background: #fef3e2;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(124, 45, 18, 0.1);
+}
+
+.calculator-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.calc-section {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 2px solid #fed7aa;
+    transition: all 0.3s ease;
+}
+
+.calc-section:hover {
+    border-color: #ea580c;
+    box-shadow: 0 5px 15px rgba(234, 88, 12, 0.1);
+}
+
+.calc-section .section-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.section-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.calc-section h3 {
+    color: #7c2d12;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.calc-section p {
+    color: #a16207;
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+}
+
+.input-group label {
+    display: block;
+    color: #7c2d12;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #fed7aa;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #fefbf7;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: #ea580c;
+    box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.1);
+}
+
+.section-total {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, #ea580c, #dc2626);
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.125rem;
+}
+
+.calculator-results {
+    background: #fef3e2;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(124, 45, 18, 0.1);
+    position: sticky;
+    top: 100px;
+}
+
+.results-summary h3 {
+    color: #7c2d12;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.total-breakdown {
+    margin-bottom: 2rem;
+}
+
+.breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #fed7aa;
+}
+
+.breakdown-item:last-child {
+    border-bottom: none;
+}
+
+.item-label {
+    color: #a16207;
+    font-weight: 500;
+}
+
+.item-value {
+    color: #7c2d12;
+    font-weight: 600;
+    font-size: 1.125rem;
+}
+
+.total-amount {
+    background: linear-gradient(135deg, #ea580c, #dc2626);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.total-amount h2 {
+    margin: 0;
+    font-size: 1.75rem;
+}
+
+.coverage-recommendation {
+    background: #fefbf7;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #ea580c;
+    margin-bottom: 1.5rem;
+}
+
+.coverage-recommendation p {
+    color: #7c2d12;
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.action-buttons .btn {
+    width: 100%;
+    justify-content: center;
+}
+
+.coverage-chart {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.coverage-chart canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Risk Assessment */
+.risk-assessment {
+    padding: 80px 0;
+    background: white;
+}
+
+.assessment-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.assessment-visual {
+    background: #f8fafc;
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.risk-meter {
+    margin-bottom: 2rem;
+}
+
+.meter-svg {
+    width: 200px;
+    height: 120px;
+}
+
+.meter-needle {
+    transition: transform 0.8s ease;
+    transform-origin: 100px 100px;
+}
+
+.meter-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: #64748b;
+}
+
+.risk-score {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-top: 1rem;
+}
+
+.protection-gaps {
+    text-align: left;
+}
+
+.protection-gaps h4 {
+    color: #1e293b;
+    margin-bottom: 1rem;
+}
+
+.gap-list {
+    background: white;
+    border-radius: 10px;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+}
+
+.gap-item {
+    padding: 0.5rem 0;
+    color: #64748b;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.gap-item:last-child {
+    border-bottom: none;
+}
+
+.gap-item.identified {
+    color: #ef4444;
+    font-weight: 500;
+}
+
+.gap-item.covered {
+    color: #10b981;
+    font-weight: 500;
+}
+
+/* Assessment Form */
+.assessment-form {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.question {
+    display: none;
+}
+
+.question.active {
+    display: block;
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.question h3 {
+    color: #1e293b;
+    margin-bottom: 1.5rem;
+}
+
+.options {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.option-btn {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.option-btn:hover {
+    border-color: #3b82f6;
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.option-btn.selected {
+    border-color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+    color: #1d4ed8;
+}
+
+.assessment-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.nav-btn {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+}
+
+.nav-btn:not(:disabled):hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+.progress-dots {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    transition: background 0.3s ease;
+}
+
+.dot.active {
+    background: #3b82f6;
+}
+
+/* Insurance Types Grid */
+.insurance-types {
+    padding: 80px 0;
+    background: #f8fafc;
+}
+
+.types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.type-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.type-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(139, 92, 246, 0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.type-card:hover::before {
+    opacity: 1;
+}
+
+.type-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.card-icon {
+    margin-bottom: 1.5rem;
+}
+
+.icon-svg {
+    width: 80px;
+    height: 80px;
+    transition: transform 0.3s ease;
+}
+
+.type-card:hover .icon-svg {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.type-card h3 {
+    color: #1e293b;
+    margin-bottom: 1rem;
+}
+
+.type-card p {
+    color: #64748b;
+    margin-bottom: 1.5rem;
+}
+
+.card-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card-features span {
+    font-size: 0.875rem;
+    color: #10b981;
+    font-weight: 500;
+}
+
+/* Call to Action */
+.insurance-cta {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #1e293b, #334155);
+    color: white;
+    text-align: center;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cta-content p {
+    font-size: 1.25rem;
+    color: #94a3b8;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .protection-shield {
+        display: none;
+    }
+    
+    .coverage-interactive,
+    .assessment-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .insurance-hero {
+        padding: 100px 0 60px;
+        min-height: 80vh;
+    }
+    
+    .protection-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .types-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    .insurance-hero {
+        padding: 80px 0 40px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .assessment-form,
+    .coverage-visual {
+        padding: 1rem;
+    }
+}/
+* Real-time calculator enhancements */
+.section-total {
+    transition: all 0.3s ease;
+}
+
+.section-total.updating {
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
+    transform: scale(1.02);
+}
+
+.total-amount {
+    transition: all 0.3s ease;
+}
+
+.total-amount.updating {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(234, 88, 12, 0.4);
+}
+
+.breakdown-item .item-value {
+    transition: all 0.2s ease;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    background: #fefbf7;
+    border-color: #ea580c;
+    box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.1);
+}
+
+/* Highlight active calculations */
+.calc-section.active {
+    border-color: #ea580c;
+    box-shadow: 0 8px 25px rgba(234, 88, 12, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Loading state for calculations */
+.calculating {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.calculating::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #ea580c;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .calculator-sections {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .calculator-interactive {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .calculator-results {
+        position: static;
+        order: -1;
+    }
+}

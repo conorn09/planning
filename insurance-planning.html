@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Planning & Protection | [Your Business Name] | Comprehensive Coverage Solutions</title>
+    <meta name="description" content="Comprehensive insurance planning services to protect your family and assets. Life insurance, disability insurance, and protection strategies from certified financial planners.">
+    <meta name="keywords" content="insurance planning, life insurance, disability insurance, protection planning, insurance analysis, financial protection">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="insurance-styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav-brand">
+                <h1><a href="index.html">[Your Business Name]</a></h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#services" class="nav-link">Services</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="insurance-hero">
+        <div class="hero-background">
+            <div class="protection-shield">
+                <svg class="shield-svg" viewBox="0 0 200 240">
+                    <defs>
+                        <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#3b82f6"/>
+                            <stop offset="50%" style="stop-color:#8b5cf6"/>
+                            <stop offset="100%" style="stop-color:#06b6d4"/>
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge> 
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <path class="shield-path" d="M100 20 L160 50 L160 140 Q160 180 100 220 Q40 180 40 140 L40 50 Z" 
+                          fill="url(#shieldGradient)" filter="url(#glow)"/>
+                    <path class="shield-inner" d="M100 40 L140 60 L140 130 Q140 160 100 190 Q60 160 60 130 L60 60 Z" 
+                          fill="rgba(255,255,255,0.2)"/>
+                    <circle class="shield-center" cx="100" cy="120" r="25" fill="rgba(255,255,255,0.3)"/>
+                    <path class="checkmark" d="M85 120 L95 130 L115 110" stroke="white" stroke-width="4" 
+                          stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+                
+                <!-- Floating protection icons -->
+                <div class="protection-icons">
+                    <div class="protection-icon icon-1" data-protection="life">
+                        <div class="icon-circle">👨‍👩‍👧‍👦</div>
+                        <div class="icon-label">Life Insurance</div>
+                    </div>
+                    <div class="protection-icon icon-2" data-protection="health">
+                        <div class="icon-circle">🏥</div>
+                        <div class="icon-label">Health Coverage</div>
+                    </div>
+                    <div class="protection-icon icon-3" data-protection="disability">
+                        <div class="icon-circle">🦽</div>
+                        <div class="icon-label">Disability</div>
+                    </div>
+                    <div class="protection-icon icon-4" data-protection="property">
+                        <div class="icon-circle">🏠</div>
+                        <div class="icon-label">Property</div>
+                    </div>
+                    <div class="protection-icon icon-5" data-protection="auto">
+                        <div class="icon-circle">🚗</div>
+                        <div class="icon-label">Auto Insurance</div>
+                    </div>
+                </div>
+                
+                <!-- Protection waves -->
+                <div class="protection-waves">
+                    <div class="wave wave-1"></div>
+                    <div class="wave wave-2"></div>
+                    <div class="wave wave-3"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a> / <span>Insurance Planning</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-line">Comprehensive</span>
+                    <span class="title-line gradient-text">Insurance Planning</span>
+                    <span class="title-line">& Protection</span>
+                </h1>
+                <p class="hero-subtitle">Safeguard your family's financial future with strategic insurance planning. We analyze your protection needs and create comprehensive coverage strategies.</p>
+                
+                <div class="protection-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">🛡️</div>
+                        <div class="stat-number" data-target="98">0</div>
+                        <div class="stat-label">% Protection Rate</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-number" data-target="2.5">0</div>
+                        <div class="stat-label">M Average Coverage</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⚡</div>
+                        <div class="stat-number" data-target="24">0</div>
+                        <div class="stat-label">Hour Response</div>
+                    </div>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="#assessment" class="btn btn-primary">
+                        <span>Get Protection Assessment</span>
+                        <div class="btn-shine"></div>
+                    </a>
+                    <a href="#coverage-types" class="btn btn-secondary">
+                        <span>Explore Coverage</span>
+                        <svg class="btn-arrow" viewBox="0 0 24 24" fill="none">
+                            <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>    <!-- Life Insurance Calculator -->
+    <section id="coverage-types" class="coverage-types">
+        <div class="container">
+            <div class="section-header">
+                <h2>Life Insurance Needs Calculator</h2>
+                <p>Calculate how much life insurance you need based on your family's financial situation</p>
+            </div>
+            
+            <div class="calculator-interactive">
+                <div class="calculator-form">
+                    <div class="calculator-sections">
+                        <div class="calc-section" data-section="debt">
+                            <div class="section-header">
+                                <div class="section-icon">💳</div>
+                                <h3>Outstanding Debt</h3>
+                                <p>Include all debts that would burden your family</p>
+                            </div>
+                            <div class="input-group">
+                                <label for="credit-cards">Credit Card Debt</label>
+                                <input type="number" id="credit-cards" placeholder="$0" data-calc="debt">
+                            </div>
+                            <div class="input-group">
+                                <label for="personal-loans">Personal Loans</label>
+                                <input type="number" id="personal-loans" placeholder="$0" data-calc="debt">
+                            </div>
+                            <div class="input-group">
+                                <label for="other-debt">Other Debt</label>
+                                <input type="number" id="other-debt" placeholder="$0" data-calc="debt">
+                            </div>
+                            <div class="section-total">
+                                <strong>Total Debt: $<span id="debt-total">0</span></strong>
+                            </div>
+                        </div>
+                        
+                        <div class="calc-section" data-section="income">
+                            <div class="section-header">
+                                <div class="section-icon">💰</div>
+                                <h3>Income Replacement</h3>
+                                <p>Replace your income for your family's needs</p>
+                            </div>
+                            <div class="input-group">
+                                <label for="annual-income">Annual Income</label>
+                                <input type="number" id="annual-income" placeholder="$0" data-calc="income">
+                            </div>
+                            <div class="input-group">
+                                <label for="income-years">Years to Replace</label>
+                                <select id="income-years" data-calc="income">
+                                    <option value="5">5 years</option>
+                                    <option value="10" selected>10 years</option>
+                                    <option value="15">15 years</option>
+                                    <option value="20">20 years</option>
+                                    <option value="25">25 years</option>
+                                </select>
+                            </div>
+                            <div class="section-total">
+                                <strong>Income Replacement: $<span id="income-total">0</span></strong>
+                            </div>
+                        </div>
+                        
+                        <div class="calc-section" data-section="mortgage">
+                            <div class="section-header">
+                                <div class="section-icon">🏠</div>
+                                <h3>Mortgage & Housing</h3>
+                                <p>Ensure your family keeps their home</p>
+                            </div>
+                            <div class="input-group">
+                                <label for="mortgage-balance">Remaining Mortgage Balance</label>
+                                <input type="number" id="mortgage-balance" placeholder="$0" data-calc="mortgage">
+                            </div>
+                            <div class="input-group">
+                                <label for="home-equity">Home Equity Loan</label>
+                                <input type="number" id="home-equity" placeholder="$0" data-calc="mortgage">
+                            </div>
+                            <div class="input-group">
+                                <label for="property-taxes">Annual Property Taxes</label>
+                                <input type="number" id="property-taxes" placeholder="$0" data-calc="mortgage">
+                            </div>
+                            <div class="section-total">
+                                <strong>Housing Costs: $<span id="mortgage-total">0</span></strong>
+                            </div>
+                        </div>
+                        
+                        <div class="calc-section" data-section="education">
+                            <div class="section-header">
+                                <div class="section-icon">🎓</div>
+                                <h3>Education Funding</h3>
+                                <p>Secure your children's educational future</p>
+                            </div>
+                            <div class="input-group">
+                                <label for="num-children">Number of Children</label>
+                                <select id="num-children" data-calc="education">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2" selected>2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4+</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="education-cost">Cost per Child (College)</label>
+                                <select id="education-cost" data-calc="education">
+                                    <option value="50000">$50,000 (Community College)</option>
+                                    <option value="100000">$100,000 (State University)</option>
+                                    <option value="200000" selected>$200,000 (Private University)</option>
+                                    <option value="300000">$300,000 (Premium Education)</option>
+                                </select>
+                            </div>
+                            <div class="section-total">
+                                <strong>Education Costs: $<span id="education-total">0</span></strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="calculator-results">
+                    <div class="results-summary">
+                        <h3>Your Life Insurance Needs</h3>
+                        <div class="total-breakdown">
+                            <div class="breakdown-item">
+                                <span class="item-label">Debt Coverage:</span>
+                                <span class="item-value">$<span id="result-debt">0</span></span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="item-label">Income Replacement:</span>
+                                <span class="item-value">$<span id="result-income">0</span></span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="item-label">Housing Costs:</span>
+                                <span class="item-value">$<span id="result-mortgage">0</span></span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="item-label">Education Funding:</span>
+                                <span class="item-value">$<span id="result-education">0</span></span>
+                            </div>
+                        </div>
+                        <div class="total-amount">
+                            <h2>Recommended Coverage: $<span id="total-coverage">0</span></h2>
+                        </div>
+                        <div class="coverage-recommendation">
+                            <p id="recommendation-text">Enter your information above to see your personalized life insurance recommendation.</p>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="#contact" class="btn btn-primary">Get Personalized Quote</a>
+                            <button class="btn btn-secondary" onclick="resetCalculator()">Reset Calculator</button>
+                        </div>
+                    </div>
+                    
+                    <div class="coverage-chart">
+                        <canvas id="coverageChart" width="300" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Risk Assessment Tool -->
+    <section id="assessment" class="risk-assessment">
+        <div class="container">
+            <div class="section-header">
+                <h2>Interactive Risk Assessment</h2>
+                <p>Answer a few questions to see your personalized protection recommendations</p>
+            </div>
+            
+            <div class="assessment-container">
+                <div class="assessment-visual">
+                    <div class="risk-meter">
+                        <svg viewBox="0 0 200 120" class="meter-svg">
+                            <defs>
+                                <linearGradient id="meterGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#10b981"/>
+                                    <stop offset="50%" style="stop-color:#f59e0b"/>
+                                    <stop offset="100%" style="stop-color:#ef4444"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M20 100 A80 80 0 0 1 180 100" stroke="url(#meterGradient)" stroke-width="8" fill="none" class="meter-track"/>
+                            <circle cx="100" cy="100" r="5" fill="#1f2937" class="meter-center"/>
+                            <line x1="100" y1="100" x2="100" y2="30" stroke="#1f2937" stroke-width="3" class="meter-needle" transform-origin="100 100"/>
+                        </svg>
+                        <div class="meter-labels">
+                            <span class="label-low">Low Risk</span>
+                            <span class="label-high">High Risk</span>
+                        </div>
+                        <div class="risk-score">Risk Score: <span id="riskScore">0</span>%</div>
+                    </div>
+                    
+                    <div class="protection-gaps">
+                        <h4>Protection Gaps Identified:</h4>
+                        <div class="gap-list" id="gapList">
+                            <div class="gap-item">Complete assessment to see recommendations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="assessment-form">
+                    <div class="question active" data-question="1">
+                        <h3>What's your current life stage?</h3>
+                        <div class="options">
+                            <button class="option-btn" data-value="20" data-gap="life">Single, no dependents</button>
+                            <button class="option-btn" data-value="40" data-gap="life,disability">Married, no children</button>
+                            <button class="option-btn" data-value="60" data-gap="life,disability,education">Young family with children</button>
+                            <button class="option-btn" data-value="80" data-gap="life,disability,education,estate">Established family</button>
+                        </div>
+                    </div>
+                    
+                    <div class="question" data-question="2">
+                        <h3>What's your annual household income?</h3>
+                        <div class="options">
+                            <button class="option-btn" data-value="10">Under $50K</button>
+                            <button class="option-btn" data-value="20">$50K - $100K</button>
+                            <button class="option-btn" data-value="30">$100K - $200K</button>
+                            <button class="option-btn" data-value="40">Over $200K</button>
+                        </div>
+                    </div>
+                    
+                    <div class="question" data-question="3">
+                        <h3>Do you own your home?</h3>
+                        <div class="options">
+                            <button class="option-btn" data-value="30" data-gap="property">Yes, with mortgage</button>
+                            <button class="option-btn" data-value="20" data-gap="property">Yes, paid off</button>
+                            <button class="option-btn" data-value="10">No, I rent</button>
+                        </div>
+                    </div>
+                    
+                    <div class="question" data-question="4">
+                        <h3>How much debt do you currently have?</h3>
+                        <div class="options">
+                            <button class="option-btn" data-value="10">Minimal debt</button>
+                            <button class="option-btn" data-value="20">Moderate debt</button>
+                            <button class="option-btn" data-value="30">Significant debt</button>
+                            <button class="option-btn" data-value="40">High debt levels</button>
+                        </div>
+                    </div>
+                    
+                    <div class="assessment-navigation">
+                        <button class="nav-btn prev-btn" disabled>Previous</button>
+                        <div class="progress-dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                        <button class="nav-btn next-btn" disabled>Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insurance Types Grid -->
+    <section class="insurance-types">
+        <div class="container">
+            <div class="section-header">
+                <h2>Complete Insurance Solutions</h2>
+                <p>Comprehensive coverage options tailored to your unique needs</p>
+            </div>
+            
+            <div class="types-grid">
+                <div class="type-card" data-tilt>
+                    <div class="card-icon">
+                        <svg viewBox="0 0 80 80" class="icon-svg">
+                            <circle cx="40" cy="40" r="35" fill="url(#lifeGradient)"/>
+                            <path d="M40 20 C50 20 58 28 58 38 C58 48 50 56 40 56 C30 56 22 48 22 38 C22 28 30 20 40 20 Z" fill="rgba(255,255,255,0.3)"/>
+                            <circle cx="40" cy="35" r="8" fill="white"/>
+                            <path d="M40 45 C35 45 32 48 32 52 L48 52 C48 48 45 45 40 45 Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <h3>Life Insurance</h3>
+                    <p>Term and permanent life insurance to protect your family's financial future.</p>
+                    <div class="card-features">
+                        <span>✓ Income replacement</span>
+                        <span>✓ Debt coverage</span>
+                        <span>✓ Estate planning</span>
+                    </div>
+                </div>
+                
+                <div class="type-card" data-tilt>
+                    <div class="card-icon">
+                        <svg viewBox="0 0 80 80" class="icon-svg">
+                            <circle cx="40" cy="40" r="35" fill="url(#disabilityGradient)"/>
+                            <rect x="25" y="25" width="30" height="30" rx="5" fill="rgba(255,255,255,0.3)"/>
+                            <path d="M35 35 L45 45 M45 35 L35 45" stroke="white" stroke-width="3"/>
+                        </svg>
+                    </div>
+                    <h3>Disability Insurance</h3>
+                    <p>Protect your income if you become unable to work due to illness or injury.</p>
+                    <div class="card-features">
+                        <span>✓ Income protection</span>
+                        <span>✓ Short & long term</span>
+                        <span>✓ Partial benefits</span>
+                    </div>
+                </div>
+                
+                <div class="type-card" data-tilt>
+                    <div class="card-icon">
+                        <svg viewBox="0 0 80 80" class="icon-svg">
+                            <circle cx="40" cy="40" r="35" fill="url(#healthGradient)"/>
+                            <path d="M40 20 L50 30 L40 40 L30 30 Z" fill="rgba(255,255,255,0.3)"/>
+                            <circle cx="40" cy="50" r="8" fill="white"/>
+                        </svg>
+                    </div>
+                    <h3>Health Insurance</h3>
+                    <p>Comprehensive health coverage to protect against medical expenses.</p>
+                    <div class="card-features">
+                        <span>✓ Medical coverage</span>
+                        <span>✓ Prescription drugs</span>
+                        <span>✓ Preventive care</span>
+                    </div>
+                </div>
+                
+                <div class="type-card" data-tilt>
+                    <div class="card-icon">
+                        <svg viewBox="0 0 80 80" class="icon-svg">
+                            <circle cx="40" cy="40" r="35" fill="url(#propertyGradient)"/>
+                            <path d="M25 45 L40 25 L55 45 L55 60 L25 60 Z" fill="rgba(255,255,255,0.3)"/>
+                            <rect x="35" y="50" width="10" height="10" fill="white"/>
+                        </svg>
+                    </div>
+                    <h3>Property Insurance</h3>
+                    <p>Protect your home, belongings, and assets from damage and theft.</p>
+                    <div class="card-features">
+                        <span>✓ Home protection</span>
+                        <span>✓ Personal property</span>
+                        <span>✓ Liability coverage</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="insurance-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Secure Your Financial Future?</h2>
+                <p>Get a personalized insurance analysis and protection strategy from our certified professionals.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <span>Schedule Free Consultation</span>
+                        <div class="btn-shine"></div>
+                    </a>
+                    <a href="tel:[phone-number]" class="btn btn-secondary">
+                        <span>Call Now: [phone-number]</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>[Your Business Name]</h3>
+                    <p>Professional insurance planning and financial protection services.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Insurance Services</h4>
+                    <ul>
+                        <li><a href="#coverage-types">Life Insurance</a></li>
+                        <li><a href="#coverage-types">Disability Insurance</a></li>
+                        <li><a href="#coverage-types">Health Insurance</a></li>
+                        <li><a href="#coverage-types">Property Insurance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>[street-address]<br>[city], [state] [zip-code]</p>
+                    <p>Phone: <a href="tel:[phone-number]">[phone-number]</a></p>
+                    <p>Email: <a href="mailto:[email]">[email]</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 [Your Business Name]. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SVG Gradients -->
+    <svg style="display: none;">
+        <defs>
+            <linearGradient id="lifeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#3b82f6"/>
+                <stop offset="100%" style="stop-color:#1d4ed8"/>
+            </linearGradient>
+            <linearGradient id="disabilityGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#f59e0b"/>
+                <stop offset="100%" style="stop-color:#d97706"/>
+            </linearGradient>
+            <linearGradient id="healthGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#10b981"/>
+                <stop offset="100%" style="stop-color:#059669"/>
+            </linearGradient>
+            <linearGradient id="propertyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#8b5cf6"/>
+                <stop offset="100%" style="stop-color:#7c3aed"/>
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="insurance-script.js"></script>
+</body>
+</html>
