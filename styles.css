@@ -9,11 +9,25 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Smooth gradient transitions */
+.gradient-transition {
+    transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    color: #451a03;
-    background-color: #fef7ed;
+    color: #1e293b;
+    background: linear-gradient(180deg, 
+        #667eea 0%, 
+        #764ba2 25%, 
+        #f093fb 50%, 
+        #f5576c 75%, 
+        #4facfe 100%);
+    background-size: 100% 500vh;
+    background-attachment: fixed;
+    min-height: 100vh;
+    transition: all 0.3s ease;
 }
 
 .container {
@@ -115,10 +129,11 @@ a {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(254, 247, 237, 0.95);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
     z-index: 1000;
-    border-bottom: 1px solid rgba(124, 45, 18, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
 }
 
 .nav {
@@ -150,14 +165,11 @@ a {
 }
 
 .nav-brand h1 {
-    color: #ea580c;
+    color: white;
     font-size: 1.5rem;
     margin: 0;
     font-weight: 700;
-    background: linear-gradient(135deg, #ea580c, #dc2626);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .nav-menu {
@@ -168,11 +180,13 @@ a {
 
 .nav-link {
     font-weight: 500;
-    transition: color 0.3s ease;
+    color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
 }
 
 .nav-link:hover {
-    color: #2563eb;
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .nav-toggle {
@@ -192,7 +206,7 @@ a {
 /* Hero Section */
 .hero {
     position: relative;
-    background: linear-gradient(135deg, #7c2d12 0%, #ea580c 50%, #f97316 100%);
+    background: transparent;
     padding: 120px 0 80px;
     min-height: 100vh;
     display: flex;
@@ -442,12 +456,12 @@ a {
 }
 
 .chart-container {
-    background: rgba(254, 243, 226, 0.95);
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(20px);
     border-radius: 24px;
     padding: 2rem;
-    border: 1px solid rgba(254, 215, 170, 0.3);
-    box-shadow: 0 20px 40px rgba(124, 45, 18, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     margin-bottom: 2rem;
 }
 
@@ -459,10 +473,11 @@ a {
 }
 
 .chart-header h4 {
-    color: #7c2d12;
+    color: white;
     font-size: 1.25rem;
     font-weight: 600;
     margin: 0;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
 }
 
 .chart-period {
@@ -726,7 +741,8 @@ a {
 /* Services Section */
 .services {
     padding: 80px 0;
-    background: #fef7ed;
+    background: transparent;
+    position: relative;
 }
 
 .section-header {
@@ -735,13 +751,14 @@ a {
 }
 
 .section-header h2 {
-    color: #1e293b;
+    color: white;
     margin-bottom: 1rem;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
 }
 
 .section-header p {
     font-size: 1.125rem;
-    color: #64748b;
+    color: rgba(255, 255, 255, 0.9);
     max-width: 600px;
     margin: 0 auto;
 }
@@ -754,11 +771,12 @@ a {
 
 .service-card {
     position: relative;
-    background: #fef3e2;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
     padding: 2.5rem;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(124, 45, 18, 0.1);
-    border: 1px solid #fed7aa;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     text-align: center;
     overflow: hidden;
@@ -824,19 +842,21 @@ a {
 
 .service-card h3 {
     position: relative;
-    color: #7c2d12;
+    color: white;
     margin-bottom: 1rem;
     font-size: 1.5rem;
     transition: color 0.3s ease;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .service-card:hover h3 {
-    color: #ea580c;
+    color: #f0f9ff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
 .service-card p {
     position: relative;
-    color: #a16207;
+    color: rgba(255, 255, 255, 0.9);
     line-height: 1.6;
     margin-bottom: 1.5rem;
 }
@@ -916,7 +936,7 @@ a {
 /* About Section */
 .about {
     padding: 80px 0;
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    background: transparent;
     position: relative;
     overflow: hidden;
 }
@@ -956,16 +976,18 @@ a {
 }
 
 .about-text h2 {
-    color: #1e293b;
+    color: white;
     margin-bottom: 1.5rem;
     font-size: 2.5rem;
     line-height: 1.2;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
 }
 
 .about-text p {
     font-size: 1.125rem;
     line-height: 1.7;
     margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .features-grid {
@@ -979,17 +1001,17 @@ a {
     align-items: flex-start;
     gap: 1rem;
     padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
     border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
 }
 
 .feature-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.25);
 }
 
 .feature-icon {
@@ -1010,13 +1032,14 @@ a {
 }
 
 .feature-content h4 {
-    color: #1e293b;
+    color: white;
     font-size: 1.125rem;
     margin-bottom: 0.5rem;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
 }
 
 .feature-content p {
-    color: #64748b;
+    color: rgba(255, 255, 255, 0.8);
     font-size: 0.875rem;
     margin: 0;
 }
@@ -1269,7 +1292,7 @@ a {
 /* Contact Section */
 .contact {
     padding: 80px 0;
-    background: linear-gradient(135deg, #7c2d12 0%, #92400e 100%);
+    background: transparent;
     position: relative;
     overflow: hidden;
 }

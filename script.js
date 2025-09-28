@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
     
+    // Add gradient transition class to body
+    document.body.classList.add('gradient-transition');
+    
     if (navToggle && navMenu) {
         navToggle.addEventListener('click', function() {
             navMenu.classList.toggle('active');
@@ -86,18 +89,45 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Header scroll effect
+    // Dynamic gradient scroll effect
     const header = document.querySelector('.header');
+    const body = document.body;
     let lastScrollTop = 0;
     
     window.addEventListener('scroll', function() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = scrollTop / maxScroll;
         
+        // Dynamic gradient based on scroll position
+        const gradients = [
+            '#667eea, #764ba2',      // Blue to Purple
+            '#764ba2, #f093fb',      // Purple to Pink
+            '#f093fb, #f5576c',      // Pink to Red
+            '#f5576c, #4facfe',      // Red to Blue
+            '#4facfe, #00f2fe'       // Blue to Cyan
+        ];
+        
+        const gradientIndex = Math.floor(scrollPercent * (gradients.length - 1));
+        const nextGradientIndex = Math.min(gradientIndex + 1, gradients.length - 1);
+        const localPercent = (scrollPercent * (gradients.length - 1)) - gradientIndex;
+        
+        // Interpolate between gradients
+        const currentGradient = gradients[gradientIndex];
+        const nextGradient = gradients[nextGradientIndex];
+        
+        body.style.background = `linear-gradient(180deg, ${currentGradient})`;
+        body.style.backgroundSize = '100% 500vh';
+        body.style.backgroundAttachment = 'fixed';
+        
+        // Header transparency effect
         if (scrollTop > 100) {
-            header.style.background = 'rgba(255, 255, 255, 0.98)';
+            header.style.background = 'rgba(255, 255, 255, 0.1)';
+            header.style.backdropFilter = 'blur(20px)';
             header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
         } else {
-            header.style.background = 'rgba(255, 255, 255, 0.95)';
+            header.style.background = 'rgba(255, 255, 255, 0.05)';
+            header.style.backdropFilter = 'blur(15px)';
             header.style.boxShadow = 'none';
         }
         
