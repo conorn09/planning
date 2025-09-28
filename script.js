@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
     
-    // Add gradient transition class to body
-    document.body.classList.add('gradient-transition');
+    // Add gradient transition and vibrant colors classes to body
+    document.body.classList.add('gradient-transition', 'vibrant-colors');
     
     if (navToggle && navMenu) {
         navToggle.addEventListener('click', function() {
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Dynamic gradient scroll effect
+    // Dynamic gradient scroll effect with dramatic color changes
     const header = document.querySelector('.header');
     const body = document.body;
     let lastScrollTop = 0;
@@ -99,35 +99,41 @@ document.addEventListener('DOMContentLoaded', function() {
         const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
         const scrollPercent = scrollTop / maxScroll;
         
-        // Dynamic gradient based on scroll position
+        // Dramatic gradient combinations with vibrant colors
         const gradients = [
-            '#667eea, #764ba2',      // Blue to Purple
-            '#764ba2, #f093fb',      // Purple to Pink
-            '#f093fb, #f5576c',      // Pink to Red
-            '#f5576c, #4facfe',      // Red to Blue
-            '#4facfe, #00f2fe'       // Blue to Cyan
+            '#ff0844, #ffb199, #ff006e',           // Hot Pink to Coral to Magenta
+            '#8338ec, #3a86ff, #06ffa5',          // Purple to Blue to Mint
+            '#ff006e, #fb5607, #ffbe0b',          // Magenta to Orange to Yellow
+            '#06ffa5, #00d4ff, #8338ec',          // Mint to Cyan to Purple
+            '#ffbe0b, #ff006e, #8338ec',          // Yellow to Magenta to Purple
+            '#3a86ff, #06ffa5, #ff0844',          // Blue to Mint to Hot Pink
+            '#fb5607, #ffbe0b, #8338ec'           // Orange to Yellow to Purple
         ];
         
         const gradientIndex = Math.floor(scrollPercent * (gradients.length - 1));
         const nextGradientIndex = Math.min(gradientIndex + 1, gradients.length - 1);
         const localPercent = (scrollPercent * (gradients.length - 1)) - gradientIndex;
         
-        // Interpolate between gradients
+        // Create dramatic gradient with multiple colors
         const currentGradient = gradients[gradientIndex];
-        const nextGradient = gradients[nextGradientIndex];
+        const angle = 135 + (scrollPercent * 180); // Rotating gradient angle
         
-        body.style.background = `linear-gradient(180deg, ${currentGradient})`;
-        body.style.backgroundSize = '100% 500vh';
+        body.style.background = `linear-gradient(${angle}deg, ${currentGradient})`;
+        body.style.backgroundSize = '400% 400%';
         body.style.backgroundAttachment = 'fixed';
+        
+        // Add pulsing effect based on scroll
+        const pulseIntensity = Math.sin(scrollPercent * Math.PI * 4) * 0.1 + 1;
+        body.style.filter = `brightness(${pulseIntensity}) saturate(1.2)`;
         
         // Header transparency effect
         if (scrollTop > 100) {
-            header.style.background = 'rgba(255, 255, 255, 0.1)';
-            header.style.backdropFilter = 'blur(20px)';
-            header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            header.style.background = 'rgba(255, 255, 255, 0.08)';
+            header.style.backdropFilter = 'blur(25px)';
+            header.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
         } else {
             header.style.background = 'rgba(255, 255, 255, 0.05)';
-            header.style.backdropFilter = 'blur(15px)';
+            header.style.backdropFilter = 'blur(20px)';
             header.style.boxShadow = 'none';
         }
         
