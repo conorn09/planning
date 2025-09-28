@@ -250,8 +250,7 @@ const additionalCSS = `
 const style = document.createElement('style');
 style.textContent = additionalCSS;
 document.head.appendChild(style);
-// 
-Create floating particles
+// Create floating particles
 function createParticles() {
     const particlesContainer = document.getElementById('particles');
     if (!particlesContainer) return;
@@ -576,70 +575,16 @@ function initInteractiveShapes() {
     });
 }
 
-// Interactive portfolio chart function with dramatic visual changes
+// Interactive portfolio chart function with 1Y, 5Y, and 10Y views
 function initPortfolioChart() {
     const periods = document.querySelectorAll('.period');
-    const chartLine = document.querySelector('.chart-line');
-    const chartArea = document.querySelector('.chart-area');
-    const chartDots = document.querySelectorAll('.chart-dot');
-    const chartLabels = document.querySelector('.chart-labels');
+    const chartViews = document.querySelectorAll('.chart-view');
+    const periodLabels = document.querySelectorAll('.period-labels');
     
-    if (!periods.length || !chartLine || !chartArea || !chartLabels) {
+    if (!periods.length || !chartViews.length || !periodLabels.length) {
         console.error('Chart elements not found!');
         return;
     }
-    
-    // Dramatically different chart data for each period
-    const chartData = {
-        '1Y': {
-            line: 'M20,180 L80,170 L140,150 L200,140 L260,120 L320,100 L380,80',
-            area: 'M20,180 L80,170 L140,150 L200,140 L260,120 L320,100 L380,80 L380,180 Z',
-            dots: [
-                { cx: 80, cy: 170 },
-                { cx: 140, cy: 150 },
-                { cx: 200, cy: 140 },
-                { cx: 260, cy: 120 },
-                { cx: 320, cy: 100 },
-                { cx: 380, cy: 80 }
-            ],
-            labels: ['Jan', 'Mar', 'May', 'Jul', 'Sep', 'Nov']
-        },
-        '5Y': {
-            line: 'M20,160 Q60,140 100,130 Q140,110 180,100 Q220,85 260,75 Q300,60 340,50 L380,40',
-            area: 'M20,160 Q60,140 100,130 Q140,110 180,100 Q220,85 260,75 Q300,60 340,50 L380,40 L380,180 Z',
-            dots: [
-                { cx: 60, cy: 140 },
-                { cx: 100, cy: 130 },
-                { cx: 140, cy: 110 },
-                { cx: 180, cy: 100 },
-                { cx: 220, cy: 85 },
-                { cx: 260, cy: 75 },
-                { cx: 300, cy: 60 },
-                { cx: 340, cy: 50 },
-                { cx: 380, cy: 40 }
-            ],
-            labels: ['2020', '2021', '2022', '2023', '2024']
-        },
-        '10Y': {
-            line: 'M20,170 Q50,165 80,155 Q110,145 140,130 Q170,115 200,95 Q230,75 260,60 Q290,45 320,35 Q350,30 380,25',
-            area: 'M20,170 Q50,165 80,155 Q110,145 140,130 Q170,115 200,95 Q230,75 260,60 Q290,45 320,35 Q350,30 380,25 L380,180 Z',
-            dots: [
-                { cx: 50, cy: 165 },
-                { cx: 80, cy: 155 },
-                { cx: 110, cy: 145 },
-                { cx: 140, cy: 130 },
-                { cx: 170, cy: 115 },
-                { cx: 200, cy: 95 },
-                { cx: 230, cy: 75 },
-                { cx: 260, cy: 60 },
-                { cx: 290, cy: 45 },
-                { cx: 320, cy: 35 },
-                { cx: 350, cy: 30 },
-                { cx: 380, cy: 25 }
-            ],
-            labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        }
-    };
     
     periods.forEach((period) => {
         period.addEventListener('click', (e) => {
@@ -650,57 +595,106 @@ function initPortfolioChart() {
             // Add active class to clicked period
             period.classList.add('active');
             
-            const selectedPeriod = period.textContent;
-            const data = chartData[selectedPeriod];
+            const selectedPeriod = period.getAttribute('data-period');
             
-            if (data) {
-                // Fade out current chart
-                chartLine.style.opacity = '0';
-                chartArea.style.opacity = '0';
-                chartDots.forEach(dot => dot.style.opacity = '0');
-                
+            // Hide all chart views and labels with fade effect
+            chartViews.forEach(view => {
+                view.style.opacity = '0';
+                view.style.transition = 'opacity 0.3s ease';
                 setTimeout(() => {
-                    // Update chart paths
-                    chartLine.setAttribute('d', data.line);
-                    chartArea.setAttribute('d', data.area);
-                    
-                    // Update dots positions
-                    chartDots.forEach((dot, dotIndex) => {
-                        if (data.dots[dotIndex]) {
-                            dot.setAttribute('cx', data.dots[dotIndex].cx);
-                            dot.setAttribute('cy', data.dots[dotIndex].cy);
-                            dot.style.display = 'block';
-                        } else {
-                            dot.style.display = 'none';
-                        }
-                    });
-                    
-                    // Update labels
-                    chartLabels.innerHTML = data.labels.map(label => `<span>${label}</span>`).join('');
-                    
-                    // Fade in new chart
-                    chartLine.style.opacity = '1';
-                    chartArea.style.opacity = '1';
-                    chartDots.forEach(dot => {
-                        if (dot.style.display !== 'none') {
-                            dot.style.opacity = '1';
-                        }
-                    });
-                    
-                    // Animate line drawing
-                    chartLine.style.strokeDasharray = '1000';
-                    chartLine.style.strokeDashoffset = '1000';
-                    setTimeout(() => {
-                        chartLine.style.strokeDashoffset = '0';
-                    }, 200);
-                    
+                    view.style.display = 'none';
                 }, 300);
-            }
+            });
+            
+            periodLabels.forEach(label => {
+                label.style.opacity = '0';
+                label.style.transition = 'opacity 0.3s ease';
+                setTimeout(() => {
+                    label.style.display = 'none';
+                }, 300);
+            });
+            
+            // Show selected chart view and labels after fade out
+            setTimeout(() => {
+                const selectedView = document.querySelector(`.chart-view[data-period="${selectedPeriod}"]`);
+                const selectedLabels = document.querySelector(`.period-labels[data-period="${selectedPeriod}"]`);
+                
+                if (selectedView) {
+                    selectedView.style.display = 'block';
+                    selectedView.style.opacity = '0';
+                    setTimeout(() => {
+                        selectedView.style.opacity = '1';
+                    }, 50);
+                    
+                    // Animate the chart line drawing
+                    const chartLine = selectedView.querySelector('.chart-line');
+                    if (chartLine) {
+                        const pathLength = chartLine.getTotalLength();
+                        chartLine.style.strokeDasharray = pathLength;
+                        chartLine.style.strokeDashoffset = pathLength;
+                        chartLine.style.transition = 'stroke-dashoffset 1.5s ease-in-out';
+                        
+                        setTimeout(() => {
+                            chartLine.style.strokeDashoffset = '0';
+                        }, 200);
+                    }
+                    
+                    // Animate chart dots
+                    const chartDots = selectedView.querySelectorAll('.chart-dot');
+                    chartDots.forEach((dot, index) => {
+                        dot.style.opacity = '0';
+                        dot.style.transform = 'scale(0)';
+                        dot.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                        
+                        setTimeout(() => {
+                            dot.style.opacity = '1';
+                            dot.style.transform = 'scale(1)';
+                        }, 400 + index * 100);
+                    });
+                }
+                
+                if (selectedLabels) {
+                    selectedLabels.style.display = 'flex';
+                    selectedLabels.style.opacity = '0';
+                    setTimeout(() => {
+                        selectedLabels.style.opacity = '1';
+                    }, 50);
+                }
+            }, 350);
         });
     });
+    
+    // Initialize with smooth animations on page load
+    const initialView = document.querySelector('.chart-view[data-period="1Y"]');
+    if (initialView) {
+        const chartLine = initialView.querySelector('.chart-line');
+        if (chartLine) {
+            const pathLength = chartLine.getTotalLength();
+            chartLine.style.strokeDasharray = pathLength;
+            chartLine.style.strokeDashoffset = pathLength;
+            chartLine.style.transition = 'stroke-dashoffset 2s ease-in-out';
+            
+            // Start animation after page load
+            setTimeout(() => {
+                chartLine.style.strokeDashoffset = '0';
+            }, 1000);
+        }
+        
+        // Animate initial dots
+        const chartDots = initialView.querySelectorAll('.chart-dot');
+        chartDots.forEach((dot, index) => {
+            dot.style.opacity = '0';
+            dot.style.transform = 'scale(0)';
+            dot.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            
+            setTimeout(() => {
+                dot.style.opacity = '1';
+                dot.style.transform = 'scale(1)';
+            }, 1200 + index * 150);
+        });
+    }
 }
-// Physi
-cs-based floating circles
+// Physics-based floating circles
 function initPhysicsCircles() {
     const circles = document.querySelectorAll('.physics-circle');
     const mouse = { x: 0, y: 0 };
