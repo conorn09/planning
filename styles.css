@@ -9,9 +9,9 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Smooth gradient transitions */
+/* Smooth gradient transitions - syrup-like slow */
 .gradient-transition {
-    transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background 3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 /* Dynamic gradient animation */
@@ -43,6 +43,8 @@ html {
     filter: saturate(1.3) contrast(1.1) brightness(1.05);
 }
 
+
+
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
@@ -56,8 +58,8 @@ body {
     background-size: 400% 400%;
     background-attachment: fixed;
     min-height: 100vh;
-    animation: gradientShift 15s ease infinite;
-    transition: all 0.5s ease;
+    animation: gradientShift 45s ease-in-out infinite;
+    transition: all 2.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .container {
@@ -66,20 +68,38 @@ body {
     padding: 0 20px;
 }
 
-/* Typography */
+/* Typography with subtle pop and elegance */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     line-height: 1.2;
     margin-bottom: 1rem;
+    color: white;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 2px 4px rgba(0, 0, 0, 0.3);
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
+h1 { 
+    font-size: 2.5rem;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.25));
+}
+h2 { 
+    font-size: 2rem;
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.35), 0 2px 5px rgba(0, 0, 0, 0.3);
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.2));
+}
+h3 { 
+    font-size: 1.5rem;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 2px 4px rgba(0, 0, 0, 0.3);
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+}
 
 p {
     margin-bottom: 1rem;
-    color: #666;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
+    font-weight: 400;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.15));
 }
 
 a {
@@ -262,8 +282,12 @@ a {
 .shape {
     position: absolute;
     border-radius: 50%;
-    background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
-    animation: float 20s infinite ease-in-out;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.15));
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: float 20s infinite ease-in-out, pulse 8s infinite ease-in-out, rotate 30s infinite linear;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .shape-1 {
@@ -307,25 +331,51 @@ a {
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    25% { transform: translateY(-20px) rotate(90deg); }
-    50% { transform: translateY(-40px) rotate(180deg); }
-    75% { transform: translateY(-20px) rotate(270deg); }
+    0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
+    25% { transform: translateY(-30px) translateX(15px) scale(1.1); }
+    50% { transform: translateY(-60px) translateX(-10px) scale(0.9); }
+    75% { transform: translateY(-30px) translateX(-20px) scale(1.05); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; filter: blur(0px); }
+    50% { opacity: 0.9; filter: blur(2px); }
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 .particles {
     position: absolute;
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 .particle {
     position: absolute;
     width: 4px;
     height: 4px;
-    background: rgba(59, 130, 246, 0.6);
+    background: rgba(255, 255, 255, 0.4);
     border-radius: 50%;
     animation: particle-float 15s infinite linear;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.particle:nth-child(odd) {
+    background: rgba(255, 255, 255, 0.6);
+    animation-duration: 20s;
+    width: 3px;
+    height: 3px;
+}
+
+.particle:nth-child(3n) {
+    background: rgba(255, 255, 255, 0.3);
+    animation-duration: 25s;
+    width: 2px;
+    height: 2px;
 }
 
 @keyframes particle-float {
@@ -382,7 +432,15 @@ a {
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
-    line-height: 1.1;
+    line-height: 0.85;
+    color: white;
+    text-shadow: 0 0 50px rgba(255, 255, 255, 0.6), 0 3px 10px rgba(0, 0, 0, 0.4);
+    filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.4));
+}
+
+.title-line {
+    display: block;
+    margin: -0.2em 0;
 }
 
 .title-line {
@@ -396,6 +454,20 @@ a {
 .title-line:nth-child(1) { animation-delay: 0.2s; }
 .title-line:nth-child(2) { animation-delay: 0.4s; }
 .title-line:nth-child(3) { animation-delay: 0.6s; }
+
+.ampersand {
+    display: inline-block;
+    margin: 0 0.2em;
+    font-style: italic;
+    color: #fbbf24;
+    text-shadow: 0 0 20px rgba(251, 191, 36, 0.6);
+    animation: ampersandGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes ampersandGlow {
+    0% { transform: scale(1); text-shadow: 0 0 20px rgba(251, 191, 36, 0.6); }
+    100% { transform: scale(1.1); text-shadow: 0 0 30px rgba(251, 191, 36, 0.8); }
+}
 
 .gradient-text {
     background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
@@ -421,10 +493,13 @@ a {
 
 .hero-subtitle {
     font-size: 1.25rem;
-    color: #94a3b8;
+    color: rgba(255, 255, 255, 0.95);
     margin-bottom: 2.5rem;
     animation: fadeIn 1s ease-out 0.8s forwards;
     opacity: 0;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.25));
+    line-height: 1.6;
 }
 
 @keyframes fadeIn {
@@ -545,18 +620,20 @@ a {
     stroke-dashoffset: 1000;
     animation: drawLine 3s ease-out 2s forwards;
     filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
+    transition: opacity 0.3s ease, stroke-dashoffset 1s ease-out;
 }
 
 .chart-area {
     opacity: 0;
     animation: fillArea 2s ease-out 4s forwards;
+    transition: opacity 0.3s ease;
 }
 
 .chart-dot {
     opacity: 0;
     animation: popIn 0.5s ease-out 5s forwards;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .chart-dot:hover {
@@ -576,8 +653,9 @@ a {
     display: flex;
     justify-content: space-between;
     font-size: 0.75rem;
-    color: #a16207;
+    color: rgba(255, 255, 255, 0.7);
     margin-top: 0.5rem;
+    transition: opacity 0.3s ease;
 }
 
 @keyframes drawLine {
@@ -688,9 +766,16 @@ a {
 
 .decoration-circle {
     position: absolute;
-    border: 2px solid rgba(59, 130, 246, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-    animation: rotate 20s linear infinite;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.physics-circle {
+    animation: none; /* Remove default animation, physics will handle movement */
 }
 
 .circle-1 {
@@ -698,7 +783,6 @@ a {
     height: 100px;
     top: 10%;
     right: 10%;
-    animation-delay: 0s;
 }
 
 .circle-2 {
@@ -706,7 +790,27 @@ a {
     height: 60px;
     bottom: 20%;
     left: 10%;
-    animation-delay: 10s;
+}
+
+.circle-3 {
+    width: 80px;
+    height: 80px;
+    top: 30%;
+    left: 20%;
+}
+
+.circle-4 {
+    width: 40px;
+    height: 40px;
+    top: 60%;
+    right: 30%;
+}
+
+.circle-5 {
+    width: 70px;
+    height: 70px;
+    bottom: 40%;
+    right: 20%;
 }
 
 .decoration-line {
@@ -783,14 +887,18 @@ a {
 .section-header h2 {
     color: white;
     margin-bottom: 1rem;
-    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.5), 0 2px 8px rgba(0, 0, 0, 0.4);
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+    font-weight: 700;
 }
 
 .section-header p {
     font-size: 1.125rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.95);
     max-width: 600px;
     margin: 0 auto;
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.3), 0 1px 4px rgba(0, 0, 0, 0.3);
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.2));
 }
 
 .services-grid {
