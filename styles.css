@@ -552,6 +552,62 @@ a {
     animation: slideInRight 1s ease-out 0.5s forwards;
     opacity: 0;
     transform: translateX(50px);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Hero Image Styling */
+.hero-image-container {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    margin-bottom: 2rem;
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+}
+
+.hero-image:hover {
+    transform: scale(1.02);
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.credentials-badge {
+    text-align: center;
+}
+
+.credential-text {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e40af;
+    line-height: 1;
+}
+
+.credential-subtitle {
+    display: block;
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 500;
+    margin-top: 0.25rem;
+    letter-spacing: 0.5px;
 }
 
 @keyframes slideInRight {
@@ -1137,11 +1193,50 @@ a {
     transform: rotate(45deg) translate(-20px, -20px);
 }
 
+/* Service Images */
+.service-image {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    margin: 0 auto 1.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.4s ease;
+}
+
+.service-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.service-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(30, 64, 175, 0.8), rgba(59, 130, 246, 0.6));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.service-card:hover .service-overlay {
+    opacity: 1;
+}
+
+.service-card:hover .service-img {
+    transform: scale(1.1);
+}
+
 .service-icon {
     position: relative;
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 1.5rem;
+    width: 60px;
+    height: 60px;
     transition: transform 0.4s ease;
 }
 
@@ -1368,6 +1463,61 @@ a {
 /* About Visual - Stats Dashboard */
 .about-visual {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* About Image Styling */
+.about-image-container {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    margin-bottom: 1rem;
+}
+
+.about-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+    transition: transform 0.3s ease;
+}
+
+.about-image:hover {
+    transform: scale(1.02);
+}
+
+.about-image-overlay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(30, 64, 175, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.experience-badge {
+    text-align: center;
+    color: white;
+}
+
+.experience-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.experience-text {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-top: 0.25rem;
+    opacity: 0.9;
 }
 
 .stats-dashboard {
@@ -1575,17 +1725,33 @@ a {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
     flex-shrink: 0;
+    border: 3px solid rgba(59, 130, 246, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.author-avatar:hover {
+    transform: scale(1.1);
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .avatar-placeholder {
     color: white;
     font-weight: 600;
     font-size: 1.125rem;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .author-info h4 {
@@ -1920,13 +2086,38 @@ a {
     font-size: 1.25rem;
 }
 
+/* Footer Logo */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer-brand-logo {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+}
+
+.footer-logo-svg {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.footer-logo-svg:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
 .footer-section:first-child h3 {
     background: linear-gradient(135deg, #3b82f6, #8b5cf6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
+    margin: 0;
 }
 
 .footer-section p {
